@@ -337,3 +337,17 @@ int main() {
     return 0;
 }
 // Akhir Fungsi Eksekusi Program
+
+
+
+
+Berikut langkah-langkah proses pengujian yang baik dan benar secara singkat, padat, dan jelas:
+
+1. Rencanakan pengujian dengan menentukan tujuan, lingkup, persyaratan, dan skenario uji.
+2. Siapkan lingkungan pengujian yang sesuai dan mewakili lingkungan produksi.
+3. Lakukan eksekusi pengujian sesuai rencana dan catat hasil secara terperinci.
+4. Analisis hasil, kategorikan masalah, dan buat laporan pengujian.
+5. Verifikasi dan validasi bahwa semua kasus uji dilakukan dan persyaratan terpenuhi.
+6. Lakukan perbaikan masalah dan pengujian ulang.
+7. Dokumentasikan proses, hasil, dan pelajaran yang dipetik.
+8. Tutup siklus pengujian setelah semua persyaratan terpenuhi dan masalah kritis teratasi.
