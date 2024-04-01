@@ -53,7 +53,7 @@ void tampilkanMenuAwal(GVariabel data[]) {
     printf("-------------------------------------\n");
     for(int i=0;i<5;i++){
         printf("|%i.|%s\t\t|%d\t    |\n",i+1,data[i].produk,data[i].harga);
-    }// End Funsi Looping untuk menampilkan data array barang dalam tampilan
+    }// End Fungsi Looping untuk menampilkan data array barang dalam tampilan
     printf("==================================================================================\n\n");
     printf("99. Struk Pembayaran\n");
     printf("55. Reset Pilihan\n");
@@ -147,7 +147,7 @@ int main() {
             for( int i = 0; i < 5; i++ ) {
                 data[i].TotalHarga = data[i].harga * data[i].jumlah;
 
-
+                //menghitung jumlah diskon per items
                 PersentaseDiskon = JumlahDiskon(data[i].jumlah);
                 data[i].diskon = (data[i].TotalHarga * PersentaseDiskon) / 100;
             }
@@ -189,13 +189,14 @@ int main() {
                     continue;
 
                 }
-
+                
+                
                 else if(BarangDipilih == 99 || BarangDipilih == 55 || BarangDipilih == 00) {
                     break;
                 }
 
                     printf("--------------------------------------\n");
-                    printf("Masukkan Jumlah %s \t : ", data[BarangDipilih - 1].produk);
+                    printf("Masukkan Jumlah %s \t : ", data[BarangDipilih - 1].produk); //menghitung jumlah items yang dibeli
                     scanf("%i", &data[BarangDipilih - 1].jumlah);
                     printf("\n");
 
@@ -233,13 +234,22 @@ int main() {
         sprintf(IDStrukConsole, "%ld", sekarang);
 
         TampilkanStruk(data);
-
-        TotalSemuaTagihan = data[0].TotalHarga +  data[1].TotalHarga +  data[2].TotalHarga +  data[3].TotalHarga +  data[4].TotalHarga;
+        //menghitung total nominal yang harus dibayarkan
+        int TotalSemuaTagihan =0;
+        for(int i = 0;i<5;i++){
+            TotalSemuaTagihan+=data[i].TotalHarga;
+        }
         printf("Total Harga \t:Rp. %i,-", TotalSemuaTagihan);
 
-        TotalDiskon = data[0].diskon + data[1].diskon + data[2].diskon + data[3].diskon + data[4].diskon;
-        printf("\nTotal Diskon \t:Rp. %i,-", TotalDiskon);
+        //menghitung total diskon
+        int TotalDiskon = 0;
+        for(int i = 0;i<5;i++){
+            TotalDiskon+=data[i].diskon;
+        }
 
+        printf("\nTotal Diskon \t:Rp. %i,-", TotalDiskon);
+        
+        //untuk mengurangi total tagihan dengan total diskon
         Tagihan = TotalSemuaTagihan - TotalDiskon;
         printf("\nTotal Bayar \t:Rp. %i,-", Tagihan);
 
@@ -249,9 +259,8 @@ int main() {
         scanf("%i", &Pembayaran);
 
         do {
-
+            //jika pembayaran kurang maka akan menampilakn nominal pembayaran kurang
             if(Pembayaran < Tagihan) {
-
                 printf("\nNominal Pembayaran Kurang!, Silahkan Masukkan Ulang Nominal Pembayaran");
                 printf("\n==================================================================================\n\n");
                 printf("\nMasukkan Ulang Nominal Pembayaran :Rp. ");
@@ -323,7 +332,7 @@ int main() {
     }
     fprintf(file, "\t\t==================================================================================\n");
     fprintf(file, "\t\t|                                                                                |\n");
-    fprintf(file, "\t\t|Total Harga \t:Rp. %-10i,-                                                |", TotalSemuaTagihan);
+    fprintf(file, "\t\t|Total Harga \t:Rp. %-10i,-                                                |", TotalSemuaTagihan );
     fprintf(file, "\n\t\t|Total Diskon \t:Rp. %-10i,-                                                |", TotalDiskon);
     fprintf(file, "\n\t\t|Total Bayar \t:Rp. %-10i,-                                                |", Tagihan);
     fprintf(file, "\n\t\t|Pembayaran \t:Rp. %-10i,-                                                |", Pembayaran);
@@ -337,17 +346,4 @@ int main() {
     return 0;
 }
 // Akhir Fungsi Eksekusi Program
-
-
-
-
-Berikut langkah-langkah proses pengujian yang baik dan benar secara singkat, padat, dan jelas:
-
-1. Rencanakan pengujian dengan menentukan tujuan, lingkup, persyaratan, dan skenario uji.
-2. Siapkan lingkungan pengujian yang sesuai dan mewakili lingkungan produksi.
-3. Lakukan eksekusi pengujian sesuai rencana dan catat hasil secara terperinci.
-4. Analisis hasil, kategorikan masalah, dan buat laporan pengujian.
-5. Verifikasi dan validasi bahwa semua kasus uji dilakukan dan persyaratan terpenuhi.
-6. Lakukan perbaikan masalah dan pengujian ulang.
-7. Dokumentasikan proses, hasil, dan pelajaran yang dipetik.
-8. Tutup siklus pengujian setelah semua persyaratan terpenuhi dan masalah kritis teratasi.
+```
